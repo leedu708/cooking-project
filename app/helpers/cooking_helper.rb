@@ -1,0 +1,2 @@
+module CookingHelper
+end
