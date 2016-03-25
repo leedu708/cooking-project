@@ -1,0 +1,9 @@
+<h1 class='page-header'>{{ pageTitle }}</h1>
+
+<ol>
+  <li ng-repeat='recipe in recipes'>
+    <a ui-sref='showRecipe({recipe_id: recipe.id})'>
+      {{ recipe.title }}
+    </a>
+  </li>
+</ol>

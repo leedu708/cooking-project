@@ -1,0 +1,79 @@
+// side bar and dashboard
+.admin-container {
+  padding-left: 200px;
+}
+
+.sidebar-container {
+  margin-left: -200px;
+  left: 200px;
+  width: 200px;
+  background: #F8F8F8;
+  border: 1px solid #E7E7E7;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.dashboard-container {
+  width: 100%;
+}
+
+.sidebar-wrapper {
+  position: absolute;
+  top: 0;
+  width: 200px;
+  list-style: none;
+  margin: 20px 0 0 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.sidebar-wrapper li {
+  text-indent: 15px;
+  line-height: 60px;
+  border-bottom: 1px solid #C7C7C7;
+}
+
+.sidebar-wrapper li a {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: #337AB7;
+
+  .fa {
+    margin-right: 10px;
+  }
+}
+
+.sidebar-wrapper li a:hover,
+.sidebar-wrapper .side-nav-active {
+  text-decoration: none;
+  color: #000;
+  background: rgba(155, 155, 155, 0.2);
+}
+
+.sidebar-wrapper li a:active,
+.sidebar-wrapper li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-wrapper > .sidebar-brand {
+  height: 65px;
+  font-size: 24px;
+  line-height: 60px;
+}
+
+.sidebar-wrapper > .sidebar-brand a {
+  color: #666;
+}
+
+.sidebar-wrapper > .sidebar-brand a:hover {
+  color: #000;
+  background: none;
+}
+
+// user panel
+table th {
+  text-align: center;
+}

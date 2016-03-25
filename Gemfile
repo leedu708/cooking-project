@@ -34,6 +34,9 @@ gem 'devise'
 
 gem 'faker'
 
+# bootstrap
+gem 'twitter-bootstrap-rails'
+
 group :development, :test do
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
   gem 'pry-byebug'
