@@ -25,6 +25,10 @@ gem 'figaro'
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'
 
+# image uploading
+gem 'paperclip'
+gem 'aws-sdk'
+
 source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
