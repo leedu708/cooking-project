@@ -8,4 +8,8 @@ class Recipe < ActiveRecord::Base
 
   has_many :taggings, :foreign_key => :recipe_id
   has_many :tags, :through => :taggings
+
+  def hero_url
+    self.hero.url
+  end
 end

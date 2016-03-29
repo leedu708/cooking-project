@@ -7,10 +7,10 @@ cooking.controller('createRecipeCtrl',
     };
 
     $scope.createRecipe = function(recipe) {
-      var apiLink = 'http://localhost:3000/api/recipes.json'
+      var apiLink = 'api/recipes.json'
       var method = 'POST'
-      recipeService.create(recipe, apiLink, method).then(function(response) {
-        $location.path( "/recipes/" + response.id);
+      recipeService.create(recipe, method, apiLink).then(function(response) {
+        $location.path( "/recipes/" + response.data.id);
       });
     };
 

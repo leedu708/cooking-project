@@ -12,11 +12,10 @@ cooking.factory('recipeService',
       return Restangular.one('recipes', id).get();
     };
 
-    recipeService.create = function(newRecipe, method, url) {
+    recipeService.create = function(newRecipe, method, apiLink) {
       file_attachment = newRecipe.hero || [];
-      console.log(file_attachment);
       options = {
-        url: url,
+        url: apiLink,
         method: method,
         file: file_attachment,
         file_form_data_name: file_attachment.name || "",
@@ -27,8 +26,6 @@ cooking.factory('recipeService',
           }
         }
       };
-
-      console.log(options);
 
       return Upload.upload(options);
     };

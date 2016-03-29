@@ -10,7 +10,8 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find_by_id(params[:id]).to_json(
-      :include => [ { :items => { :methods => :name } } ] )
+      :include => [ { :items => { :methods => :name } } ],
+      :methods => [:hero_url] )
     respond_to do |format|
       format.json { render :json => @recipe, :status => 200 }
     end
@@ -52,10 +53,10 @@ class RecipesController < ApplicationController
   end
 
   def process_params
-    params[:recipe] = JSON.parse(params[:recipe]).with_indifferent_access
+    params[:recipe] = params[:recipe].with_indifferent_access
 
-    if params[:recipe][:hero]
-      params[:recipe][:file_attachment] = params[:recipe][:hero]
+    if params[:file]
+      params[:recipe][:hero] = params[:file]
     end
   end
   

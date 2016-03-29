@@ -26,8 +26,8 @@ gem 'angularjs-rails'
 gem 'angular_rails_csrf'
 
 # image uploading
-gem 'paperclip'
-gem 'aws-sdk'
+gem 'paperclip', '4.3.1'
+gem 'aws-sdk', '< 2.0'
 
 source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
