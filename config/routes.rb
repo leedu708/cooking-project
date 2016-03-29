@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'cooking#index'
 
   scope 'api' do
-    resources :recipes, :only => [:index, :show]
+    resources :recipes, :only => [:index, :show, :create, :update]
     resources :ingredients, :only => [:index]
   end
 end

@@ -1,4 +1,4 @@
-var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate', 'Devise'])
+var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate', 'ngFileUpload', 'Devise'])
 
 .config( ['$stateProvider', '$urlRouterProvider', 'RestangularProvider',
   function($stateProvider, $urlRouterProvider, RestangularProvider) {
@@ -23,11 +23,17 @@ var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate'
         }]
       })
 
-      // show resource
+      // recipe CRUD
       .state('showRecipe', {
-        url: '/recipe/:recipe_id',
+        url: '/recipes/:recipe_id',
         templateUrl: '/templates/recipe/show.html',
         controller: 'showRecipeCtrl'
+      })
+
+      .state('createRecipe', {
+        url: '/recipe/create',
+        templateUrl: '/templates/recipe/create.html',
+        controller: 'createRecipeCtrl'
       })
 
       // Admin Dashboard

@@ -5,7 +5,6 @@ cooking.controller('showRecipeCtrl',
     $scope.init = function() {
       $scope.getRecipe($stateParams['recipe_id']);
       $scope.units = 'grams';
-      console.log($scope.units);
     };
 
     $scope.getRecipe = function(id) {

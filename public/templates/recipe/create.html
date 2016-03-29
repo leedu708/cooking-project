@@ -1,0 +1,25 @@
+<div class='col-xs-8 col-xs-offset-2'>
+  <h1 class='page-header'>Create A Recipe</h1>
+
+  <!-- Add recipe form -->
+  <div class='col-xs-10 col-xs-offset-1'>
+    <form>
+      <div class='form-group'>
+        <label for='title'>Title</label>
+        <input type='text' class='form-control' id='title' ng-model='recipe.title'>
+      </div>
+
+      <div class='form-group'>
+        <label for='description'>Description</label>
+        <textarea class='form-control' id='description' rows='7' ng-model='recipe.description'></textarea>
+      </div>
+
+      <div class='form-group'>
+        <label for='hero-image'>Hero Image</label>
+        <input type='file' ngf-select ng-model='recipe.hero' />
+      </div>
+
+      <button type='submit' class='btn btn-success' ng-click='createRecipe(recipe)'>Add Recipe</button>
+    </form>
+  </div>
+</div>

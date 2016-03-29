@@ -23,4 +23,7 @@
 //= require restangular
 //= require underscore
 
+//= require ng-file-upload-all.min
+//= require ng-file-upload-shim.min
+
 //= require_tree .

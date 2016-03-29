@@ -1,4 +1,9 @@
-<h1 class='page-header'>{{ pageTitle }}</h1>
+<h1 class='page-header'>
+  {{ pageTitle }}
+  <a class='pull-right btn btn-success' ui-sref='createRecipe'>
+    Add Recipe
+  </a>
+</h1>
 
 <ol>
   <li ng-repeat='recipe in recipes'>
