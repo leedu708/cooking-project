@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_filter :process_params, only: [:create]
 
   def index
     @recipes = Recipe.all.to_json
@@ -9,8 +10,9 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find_by_id(params[:id]).to_json(
-      :include => [ { :items => { :methods => :name } } ],
-      :methods => [:image_urls] )
+      :include => [ { :items => { :methods => :name } } ]
+      # :methods => [:image_urls] )
+      )
     respond_to do |format|
       format.json { render :json => @recipe, :status => 200 }
     end
@@ -48,13 +50,25 @@ class RecipesController < ApplicationController
     params.require(:recipe).
       permit( :title,
               :description,
-              { :item_attributes => [
+              { :items_attributes => [
                   :ingredient_id,
                   :amount,
                   :notes ] },
-              { :step_attributes => [
+              { :steps_attributes => [
                   :instructions,
                   :recipe_order ] } )
+  end
+
+  def process_params
+    if params[:items_attributes]
+      params[:recipe][:items_attributes] = []
+      params[:items_attributes].each { |att| params[:recipe][:items_attributes].push(att) }
+    end
+
+    if params[:steps_attributes]
+      params[:recipe][:steps_attributes] = []
+      params[:steps_attributes].each { |att| params[:recipe][:steps_attributes].push(att) }
+    end
   end
   
 end

@@ -2,28 +2,17 @@ cooking.controller('createRecipeCtrl',
   ['$scope', '$location', 'ingredientService', 'recipeService',
   function($scope, $location, ingredientService, recipeService) {
 
-    var item = {
-      ingredient_id: '',
-      amount: '',
-      notes: ''
-    };
-
-    var step = {
-      instructions: '',
-      recipe_order: ''
-    };
-
     $scope.init = function() {
       $scope.recipe = {
         title: '',
         description: '',
-        item_attributes: [],
-        step_attributes: []
+        items_attributes: [],
+        steps_attributes: []
       };
 
       for (var i = 1; i <= 3; i++) {
-        $scope.recipe.item_attributes.push(item);
-        $scope.recipe.step_attributes.push(step);
+        $scope.addItem();
+        $scope.addStep();
       };
 
       ingredientService.index().then(function(response) {
@@ -34,15 +23,26 @@ cooking.controller('createRecipeCtrl',
     };
 
     $scope.addItem = function() {
-      this.recipe.item_attributes.push(item);
+      var item = {
+        ingredient_id: '',
+        amount: 1,
+        notes: ''
+      };
+
+      this.recipe.items_attributes.push(item);
     };
 
     $scope.addStep = function() {
-      this.recipe.step_attributes.push(step);
+      var step = {
+        instructions: '',
+        recipe_order: $scope.recipe.steps_attributes.length + 1
+      };
+
+      this.recipe.steps_attributes.push(step);
     };
 
     $scope.createRecipe = function(recipe) {
-      recipeService.create().then(function(response) {
+      recipeService.create(recipe).then(function(response) {
         $location.path( "/recipes/" + response.id);
       });
     };
