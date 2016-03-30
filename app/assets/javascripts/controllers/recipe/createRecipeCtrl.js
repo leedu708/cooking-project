@@ -1,25 +1,26 @@
 cooking.controller('createRecipeCtrl',
-  ['$scope', '$location', 'ingredientService', 'recipeService',
-  function($scope, $location, ingredientService, recipeService) {
+  ['$scope', '$location', '$q', 'imageService', 'ingredientService', 'recipeService',
+  function($scope, $location, $q, imageService, ingredientService, recipeService) {
 
     $scope.init = function() {
       $scope.recipe = {
         title: '',
         description: '',
-        items_attributes: [],
-        steps_attributes: []
+        items: [],
+        steps: []
       };
+
+      $scope.images = [];
 
       for (var i = 1; i <= 3; i++) {
         $scope.addItem();
         $scope.addStep();
+        $scope.addImage();
       };
 
       ingredientService.index().then(function(response) {
         $scope.ingredients = response;
       });
-
-      console.log($scope.recipe);
     };
 
     $scope.addItem = function() {
@@ -29,22 +30,40 @@ cooking.controller('createRecipeCtrl',
         notes: ''
       };
 
-      this.recipe.items_attributes.push(item);
+      this.recipe.items.push(item);
     };
 
     $scope.addStep = function() {
       var step = {
         instructions: '',
-        recipe_order: $scope.recipe.steps_attributes.length + 1
+        recipe_order: $scope.recipe.steps.length + 1
       };
 
-      this.recipe.steps_attributes.push(step);
+      this.recipe.steps.push(step);
+    };
+
+    $scope.addImage = function() {
+      var image = {
+        id: $scope.images.length + 1,
+        attachment: ''
+      };
+
+      $scope.images.push(image);
     };
 
     $scope.createRecipe = function(recipe) {
       recipeService.create(recipe).then(function(response) {
-        $location.path( "/recipes/" + response.id);
+        $scope.uploadImages(response.id, $scope.images)
+          .then(function() {
+            $location.path( "/recipes/" + response.id);   
+        });        
       });
+    };
+
+    $scope.uploadImages = function(recipe_id, images) {
+      var defer = $q.defer();
+      defer.resolve(imageService.create(recipe_id, images));
+      return defer.promise;
     };
 
     $scope.init();

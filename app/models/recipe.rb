@@ -11,7 +11,7 @@ class Recipe < ActiveRecord::Base
   # nested attributes
   accepts_nested_attributes_for :items, :reject_if => proc { |a| a[:notes].blank? }
 
-  accepts_nested_attributes_for :steps, :reject_if => proc { |a| a[:recipe_order].blank? }
+  accepts_nested_attributes_for :steps, :reject_if => proc { |a| a[:instructions].blank? }
 
   def image_urls
     self.images.pluck(:url)

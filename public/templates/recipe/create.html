@@ -17,7 +17,7 @@
       <div class='new-recipe-items col-xs-12'>
         <h4 class='page-header'>Recipe Items</h4>
 
-        <div ng-repeat='item in recipe.items_attributes' class='new-item-wrapper'>
+        <div ng-repeat='item in recipe.items' class='new-item-wrapper'>
 
           <div class='col-xs-2'>
             <div class='form-group'>
@@ -48,23 +48,36 @@
       <div class='new-recipe-steps col-xs-12'>
         <h4 class='page-header'>Steps</h4>
 
-        <div ng-repeat='step in recipe.steps_attributes' class='new-step-wrapper'>
+        <div ng-repeat='step in recipe.steps' class='new-step-wrapper'>
           <div class='col-xs-2'>
             <div class='form-group'>
-              <label>Step Order</label>
               <input type='number' class='form-control' min='1' ng-model='step.recipe_order'>
             </div>
           </div>
 
           <div class='col-xs-10'>
-            <div class='form-group'>
-              <label>Instructions</label>
-              <input type='text' class='form-control' ng-model='step.instructions'>
-            </div>
+              <div class='form-group'>
+                <input type='text' class='form-control' ng-model='step.instructions' placeholder='instructions...'>
+              </div>
           </div>
         </div>
 
         <a class='pointer' ng-click='addStep()'>Add Another Step</a>
+      </div><br>
+
+      <div class='new-recipe-images col-xs-12'>
+        <h4 class='page-header'>Images</h4>
+
+        <div ng-repeat='image in images' class='new-image-wrapper'>
+          <div class='col-xs-4'>
+            <div class='form-group'>
+              <label>Attachment</label>
+              <input type='file' ngf-select ng-model='image.attachment' />
+            </div>
+          </div>
+        </div>
+
+        <a class='pointer' ng-click='addImage()'>Add Another Image</a>
       </div><br>
 
       <button type='submit' class='btn btn-success text-center' ng-click='createRecipe(recipe)'>Add Recipe</button>

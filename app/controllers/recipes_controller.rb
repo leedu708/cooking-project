@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
       respond_to do |format|
-        format.json { render :json => @recipe, :status => 200 }
+        format.json { render :json => @recipe, :status => 201 }
       end
     else
       respond_to do |format|
@@ -60,14 +60,14 @@ class RecipesController < ApplicationController
   end
 
   def process_params
-    if params[:items_attributes]
+    if params[:items]
       params[:recipe][:items_attributes] = []
-      params[:items_attributes].each { |att| params[:recipe][:items_attributes].push(att) }
+      params[:items].each { |att| params[:recipe][:items_attributes].push(att) }
     end
 
-    if params[:steps_attributes]
+    if params[:steps]
       params[:recipe][:steps_attributes] = []
-      params[:steps_attributes].each { |att| params[:recipe][:steps_attributes].push(att) }
+      params[:steps].each { |att| params[:recipe][:steps_attributes].push(att) }
     end
   end
   

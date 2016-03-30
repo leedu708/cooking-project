@@ -1,6 +1,7 @@
 User.delete_all
 Recipe.delete_all
 Item.delete_all
+Image.delete_all
 Ingredient.delete_all
 
 MULTIPLIER = 5
