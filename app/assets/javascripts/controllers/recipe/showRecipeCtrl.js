@@ -4,7 +4,7 @@ cooking.controller('showRecipeCtrl',
 
     $scope.init = function() {
       $scope.getRecipe($stateParams['recipe_id']);
-      $scope.units = 'grams';
+      $scope.measurement = 'weight';
     };
 
     $scope.getRecipe = function(id) {
@@ -15,14 +15,8 @@ cooking.controller('showRecipeCtrl',
       });
     };
 
-    $scope.setUnits = function(unit) {
-      if ($scope.units === 'grams') {
-        itemService.convertToGrams();
-        $scope.items = itemService.getItems();
-      } else {
-        itemService.convertToOz();
-        $scope.items = itemService.getItems();
-      }
+    $scope.currentMeasurement = function(measurement) {
+      return !!(measurement === $scope.measurement);
     };
 
     $scope.init();

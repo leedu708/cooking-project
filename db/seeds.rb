@@ -33,10 +33,14 @@ end
 
 puts 'Recipes created'
 
+volumes = ['cup', 'ts', 'T', 'oz']
+
 Recipe.all.each do |recipe|
   Ingredient.all.each do |ingredient|
     if (rand(10) > 5)
-      recipe.items.create(:amount        => Faker::Number.between(1, 50),
+      vol = volumes.sample
+      recipe.items.create(:weight        => Faker::Number.between(1, 50).to_s + 'g',
+                          :volume        => Faker::Number.between(1, 10).to_s + vol,
                           :notes         => Faker::Lorem.sentence,
                           :ingredient_id => ingredient.id)
     end
@@ -44,5 +48,14 @@ Recipe.all.each do |recipe|
 end
 
 puts 'Items added to recipes'
+
+Recipe.all.each do |recipe|
+  (rand(3 * MULTIPLIER) + 1).times do |x|
+    recipe.steps.create(:instructions => Faker::Lorem.sentence,
+                        :recipe_order => x + 1)
+  end
+end
+
+puts 'Steps added to recipes'
 
 puts 'SEEDING COMPLETE'

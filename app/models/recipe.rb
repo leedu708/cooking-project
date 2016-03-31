@@ -9,7 +9,7 @@ class Recipe < ActiveRecord::Base
   has_many :tags, :through => :taggings
 
   # nested attributes
-  accepts_nested_attributes_for :items, :reject_if => proc { |a| a[:notes].blank? }
+  accepts_nested_attributes_for :items, :reject_if => proc { |a| a[:ingredient_id].blank? }
 
   accepts_nested_attributes_for :steps, :reject_if => proc { |a| a[:instructions].blank? }
 

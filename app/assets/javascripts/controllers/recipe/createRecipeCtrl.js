@@ -26,7 +26,8 @@ cooking.controller('createRecipeCtrl',
     $scope.addItem = function() {
       var item = {
         ingredient_id: '',
-        amount: 1,
+        weight: '1g',
+        volume: '1 cup',
         notes: ''
       };
 

@@ -52,7 +52,8 @@ class RecipesController < ApplicationController
               :description,
               { :items_attributes => [
                   :ingredient_id,
-                  :amount,
+                  :weight,
+                  :volume,
                   :notes ] },
               { :steps_attributes => [
                   :instructions,

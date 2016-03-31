@@ -9,9 +9,9 @@
     <h3 class='page-header'>
       Ingredients
       <div class='col-xs-2 pull-right'>
-        <select class='form-control' ng-model='units' ng-change='setUnits(units)'>
-          <option value='grams'>Grams</option>
-          <option value='oz'>Oz</option>
+        <select class='form-control' ng-model='measurement'>
+          <option value='weight'>Weight</option>
+          <option value='volume'>Volume</option>
         </select>
       </div>
     </h3>
@@ -26,7 +26,7 @@
               </th>
 
               <th>
-                Amount ({{ units }})
+                Amount (by {{ measurement }})
               </th>
 
               <th>
@@ -41,12 +41,12 @@
                 {{ item.name }}
               </td>
 
-              <td ng-if="units === 'grams'">
-                {{ item.amount }}
+              <td ng-if="currentMeasurement('weight')">
+                {{ item.weight }}
               </td>
 
-              <td ng-if="units === 'oz'">
-                {{ item.amount | number:2 }}
+              <td ng-if="currentMeasurement('volume')">
+                {{ item.volume }}
               </td>
 
               <td>

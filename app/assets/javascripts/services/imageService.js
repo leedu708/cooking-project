@@ -9,7 +9,7 @@ cooking.factory('imageService',
       var api = 'api/images.json';
 
       for (var i = 0; i < images.length; i++) {
-        file_attachment = images[i].attachment || [];
+        var file_attachment = images[i].attachment || 0;
         options = {
           url: api,
           method: method,
@@ -22,7 +22,7 @@ cooking.factory('imageService',
           }
         };
 
-        if (file_attachment.length) {
+        if (!!file_attachment) {
           Upload.upload(options);
         };
       };

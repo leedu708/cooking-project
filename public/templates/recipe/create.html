@@ -21,12 +21,21 @@
 
           <div class='col-xs-2'>
             <div class='form-group'>
-              <input type='number' class='form-control' min='1' ng-model='item.amount'>
+              <label>Weight</label>
+              <input type='text' class='form-control' min='1' ng-model='item.weight'>
+            </div>
+          </div>
+
+          <div class='col-xs-2'>
+            <div class='form-group'>
+              <label>Volume</label>
+              <input type='text' class='form-control' min='1' ng-model='item.volume'>
             </div>
           </div>
 
           <div class='col-xs-3'>
             <div class='form-group'>
+              <label>Ingredient</label>
               <select class='form-control' ng-model='item.ingredient_id'>
                 <option value="" disabled selected>Choose an ingredient...</option>
                 <option ng-repeat="ingredient in ingredients" value='{{ ingredient.id }}'>{{ ingredient.name }}</option>
@@ -34,9 +43,10 @@
             </div>
           </div>
 
-          <div class='col-xs-7'>
+          <div class='col-xs-5'>
             <div class='form-group'>
-              <input type='text' class='form-control' ng-model='item.notes' placeholder='Notes...'>
+              <label>Notes</label>
+              <input type='text' class='form-control' ng-model='item.notes'>
             </div>
           </div>
 
