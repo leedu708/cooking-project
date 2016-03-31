@@ -37,7 +37,7 @@
             <div class='form-group'>
               <label>Ingredient</label>
               <select class='form-control' ng-model='item.ingredient_id'>
-                <option value="" disabled selected>Choose an ingredient...</option>
+                <option value="" selected>Choose an ingredient...</option>
                 <option ng-repeat="ingredient in ingredients" value='{{ ingredient.id }}'>{{ ingredient.name }}</option>
               </select>
             </div>

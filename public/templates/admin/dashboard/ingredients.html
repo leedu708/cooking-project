@@ -5,3 +5,16 @@
     {{ ingredient.name }}
   </li>
 </ol>
+
+<span class='pointer btn btn-primary' ng-click='toggleAddForm()' ng-hide='addForm'>
+  Add An Ingredient
+</span>
+
+<form ng-show='addForm'>
+  <div class='form-group'>
+    <label>Name</label>
+    <input type='text' class='form-control' id='title' ng-model='ingredient.name'>
+  </div>
+
+  <button type='submit' class='btn btn-success' ng-click='createIngredient(ingredient)'>Add Ingredient</button>
+</form>

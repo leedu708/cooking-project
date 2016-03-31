@@ -12,6 +12,10 @@ cooking.factory('ingredientService',
       return Restangular.one('ingredients', id).get();
     };
 
+    ingredientService.create = function(ingredient) {
+      return Restangular.all('ingredients').post( ingredient );
+    };
+
     return ingredientService;
 
   }])

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   scope 'api' do
     resources :recipes, :only => [:index, :show, :create, :update]
-    resources :ingredients, :only => [:index]
+    resources :ingredients, :only => [:index, :create]
     resources :images, :only => [:create]
   end
 end
