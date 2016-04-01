@@ -1,30 +1,31 @@
 cooking.controller('adminIngredientCtrl',
-  ['$scope', 'ingredientService',
-  function($scope, ingredientService) {
+  ['$scope', '$window', 'ingredientService',
+  function($scope, $window, ingredientService) {
 
     $scope.init = function() {
       $scope.pageTitle = 'Ingredients';
-      $scope.ingredient = {};
-      $scope.addForm = false;
       $scope.setIngredients();
     };
 
     $scope.setIngredients = function() {
       ingredientService.index().then(function(response) {
-        $scope.ingredients = response;
+        $scope.ingredients = ingredientService.sortByName(response);
       });
+      $scope.ingredient = {};
     };
 
     $scope.createIngredient = function(ingredient) {
-      ingredientService.create(ingredient).then(function(response) {
-        $scope.ingredients.push(response);
-        $scope.toggleAddForm();
-        $scope.ingredient = {};
+      ingredientService.create(ingredient).then(function() {
+        $scope.setIngredients();
       });
     };
 
-    $scope.toggleAddForm = function() {
-      $scope.addForm = !$scope.addForm;
+    $scope.deleteIngredient = function(ingredient) {
+      if ($window.confirm('Are you sure you want to delete ' + ingredient.name + '?')) {
+        ingredientService.destroy(ingredient).then(function() {
+          $scope.setIngredients();
+        });
+      };
     };
 
     $scope.init();

@@ -16,6 +16,34 @@ cooking.factory('recipeService',
       return Restangular.all('recipes').post( recipe );
     };
 
+    recipeService.destroy = function(recipe) {
+      return recipe.remove();
+    };
+
+    recipeService.sortByTitle = function(recipes) {
+      return recipes.sort(function(a, b) {
+        if (a.title > b.title) {
+          return 1;
+        } else if (a.title < b.title) {
+          return -1;
+        } else {
+          return 0;
+        };
+      });
+    };
+
+    recipeService.sortByCreated = function() {
+      return recipes.sort(function(a, b) {
+        if (a.created_at < b.created_at) {
+          return 1;
+        } else if (a.created_at > b.created_at) {
+          return -1;
+        } else {
+          0;
+        };
+      });
+    };
+
     return recipeService;
 
   }])

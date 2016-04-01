@@ -12,11 +12,25 @@ class IngredientsController < ApplicationController
 
     if @ingredient.save
       respond_to do |format|
-        format.json { render :json => @ingredient, :status => 201 }
+        format.json { render :nothing => :true, :status => 201 }
       end
     else
       respond_to do |format|
-        format.json { render :nothing => :true, :status => 401 }
+        format.json { render :nothing => :true, :status => 422 }
+      end
+    end
+  end
+
+  def destroy
+    @ingredient = Ingredient.find_by_id(params[:id])
+
+    if @ingredient && @ingredient.destroy
+      respond_to do |format|
+        format.json { render :nothing => :true, :status => 204 }
+      end
+    else
+      respond_to do |format|
+        format.json { render :nothing => :true, :status => 422 }
       end
     end
   end

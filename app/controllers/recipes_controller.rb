@@ -20,26 +20,42 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    
     if @recipe.save
       respond_to do |format|
         format.json { render :json => @recipe, :status => 201 }
       end
     else
       respond_to do |format|
-        format.json { render :nothing => :true, :status => 401 }
+        format.json { render :nothing => :true, :status => 422 }
       end
     end
   end
 
   def update
     @recipe = Recipe.find_by_id(params[:id])
+
     if @recipe.update(recipe_params)
       respond_to do |format|
         format.json { render :json => @recipe, :status => 200 }
       end
     else
       respond_to do |format|
-        format.json { render :nothing => :true, :status => 401 }
+        format.json { render :nothing => :true, :status => 422 }
+      end
+    end
+  end
+
+  def destroy
+    @recipe = Recipe.find_by_id(params[:id])
+
+    if @recipe && @recipe.destroy
+      respond_to do |format|
+        format.json { render :nothing => :true, :status => 204 }
+      end
+    else
+      respond_to do |format|
+        format.json { render :nothing => :true, :status => 422 }
       end
     end
   end

@@ -1,20 +1,75 @@
-<h1 class='page-header'>{{ pageTitle }}</h1>
+<h1 class='page-header'>
+  {{ pageTitle }} <span class='small'>Total: {{ ingredients.length }}</span>
+  <span class='pointer btn btn-primary pull-right'
+        data-toggle='modal'
+        data-target='#addIngredientForm'>
+    Add An Ingredient
+  </span>
 
-<ol>
-  <li ng-repeat='ingredient in ingredients'>
-    {{ ingredient.name }}
-  </li>
-</ol>
-
-<span class='pointer btn btn-primary' ng-click='toggleAddForm()' ng-hide='addForm'>
-  Add An Ingredient
-</span>
-
-<form ng-show='addForm'>
-  <div class='form-group'>
-    <label>Name</label>
-    <input type='text' class='form-control' id='title' ng-model='ingredient.name'>
+  <div class='col-xs-2 pull-right admin-search'>
+    <input type='text'
+           class='form-control'
+           ng-model='searchText'
+           placeholder='Search Terms...'>
   </div>
+</h1>
 
-  <button type='submit' class='btn btn-success' ng-click='createIngredient(ingredient)'>Add Ingredient</button>
-</form>
+<div class='col-xs-6 col-xs-offset-3'>
+  <table class='table table-bordered table-striped'>
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+
+        <th>
+          Delete?
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat='ingredient in ingredients | filter:searchText'>
+        <td>
+          {{ ingredient.name }}
+        </td>
+
+        <td class='text-center'>
+          <span class='btn-sm btn-danger pointer' ng-click='deleteIngredient(ingredient)'>
+            Delete
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- add ingredient form -->
+<div class='modal fade' tabindex='-1' role='dialog' aria-labelledby='addIngredientForm' id='addIngredientForm'>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+
+        <h3 class='modal-title'>Add Ingredient</h3>
+      </div>
+
+      <div class='modal-body'>
+        <form>
+          <div class='form-group'>
+            <label>Name</label>
+            <input type='text' class='form-control' id='title' ng-model='ingredient.name'>
+          </div>
+        </form>
+      </div>
+
+      <div class='modal-footer'>
+        <button type='submit' class='btn btn-success'
+                              ng-click='createIngredient(ingredient)'
+                              data-dismiss='modal'>
+          Add Ingredient
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

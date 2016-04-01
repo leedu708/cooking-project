@@ -1,6 +1,6 @@
 cooking.controller('adminRecipeCtrl',
-  ['$scope', 'recipeService',
-  function($scope, recipeService) {
+  ['$scope', '$window', 'recipeService',
+  function($scope, $window, recipeService) {
 
     $scope.init = function() {
       $scope.pageTitle = 'Recipes';
@@ -9,8 +9,16 @@ cooking.controller('adminRecipeCtrl',
 
     $scope.setRecipes = function() {
       recipeService.index().then(function(response) {
-        $scope.recipes = response;
+        $scope.recipes = recipeService.sortByTitle(response);
       });
+    };
+
+    $scope.deleteRecipe = function(recipe) {
+      if ($window.confirm('Are you sure you want to delete ' + recipe.title + '?')) {
+        recipeService.destroy(recipe).then(function() {
+          $scope.setRecipes();
+        });
+      };
     };
 
     $scope.init();

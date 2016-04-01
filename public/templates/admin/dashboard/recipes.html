@@ -1,14 +1,53 @@
 <h1 class='page-header'>
-  {{ pageTitle }}
-  <a class='pull-right btn btn-success' ui-sref='createRecipe'>
+  {{ pageTitle }} <span class='small'>Total: {{ recipes.length }}</span>
+  <a class='pull-right btn btn-primary' ui-sref='createRecipe'>
     Add Recipe
   </a>
+
+  <div class='col-xs-2 pull-right admin-search'>
+    <input type='text'
+           class='form-control'
+           ng-model='searchText'
+           placeholder='Search Terms...'>
+  </div>
 </h1>
 
-<ol>
-  <li ng-repeat='recipe in recipes'>
-    <a ui-sref='showRecipe({recipe_id: recipe.id})'>
-      {{ recipe.title }}
-    </a>
-  </li>
-</ol>
+<div class='col-xs-10 col-xs-offset-1'>
+  <table class='table table-bordered table-striped'>
+    <thead>
+      <tr>
+        <th>
+          Title
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Delete?
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat='recipe in recipes | filter:searchText'>
+        <td>
+          <a ui-sref='showRecipe({recipe_id: recipe.id})'>
+            {{ recipe.title }}
+          </a>
+        </td>
+
+        <td>
+          {{ recipe.description }}
+        </td>
+
+        <td>
+          <span class='btn btn-danger pointer' ng-click='deleteRecipe(recipe)'>
+            Delete
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
