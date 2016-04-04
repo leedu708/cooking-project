@@ -18,9 +18,7 @@ var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate'
       .state('home', {
         url: '/home',
         templateUrl: '/templates/index.html',
-        controller: ['$scope', function($scope) {
-          $scope.test = "Hello, World!";
-        }]
+        controller: 'HomeCtrl'
       })
 
       // recipe CRUD
