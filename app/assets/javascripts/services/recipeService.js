@@ -8,6 +8,10 @@ cooking.factory('recipeService',
       return Restangular.all('recipes').getList();
     };
 
+    recipeService.home = function() {
+      return Restangular.all('recipes').customGETLIST('home');
+    };
+
     recipeService.show = function(id) {
       return Restangular.one('recipes', id).get();
     };

@@ -7,7 +7,7 @@ cooking.controller('HomeCtrl',
     };
 
     $scope.setRecipes = function() {
-      recipeService.index().then(function(response) {
+      recipeService.home().then(function(response) {
         $scope.recipes = response;
       });
     };
