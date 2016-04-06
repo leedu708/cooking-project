@@ -3,7 +3,9 @@
 
   <ol>
     <li ng-repeat='recipe in recipes'>
-      {{ recipe.title }}
+      <a ui-sref='showRecipe({recipe_id: recipe.id})'>
+        {{ recipe.title }}
+      </a>
     </li>
   </ol>
 </div>

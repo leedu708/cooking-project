@@ -1,36 +1,46 @@
 .flip-container {
   perspective: 1000;
   margin: 20px auto;
-}
-
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-  transform: rotateY(180deg);
-}
-
-.flip-container, .front, .back {
   width: 320px;
   height: 320px;
+
+  .front, .back {
+    width: 320px;
+    height: 320px;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #000;
+    border-radius: 5px;
+    overflow: auto;
+
+    .page-header {
+      margin-top: 20px;
+    }
+  }
+
+  .flipper {
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+
+  .front {
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+
+  .back {
+    transform: rotateY(180deg);
+
+    .close {
+      padding-top: 10px;
+    }
+  }
 }
 
-.flipper {
-  transition: 0.5s;
-  transform-style: preserve-3d;
-  position: relative;
-}
-
-.front, .back {
-  backface-visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 1px solid #000;
-}
-
-.front {
-  z-index: 2;
-  transform: rotateY(0deg);
-}
-
-.back {
+.flipped .flipper {
   transform: rotateY(180deg);
 }
+
