@@ -17,11 +17,17 @@ var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate'
 
       .state('home', {
         url: '/home',
-        templateUrl: '/templates/index.html',
+        templateUrl: '/templates/home.html',
         controller: 'HomeCtrl'
       })
 
       // recipe CRUD
+      .state('indexRecipe', {
+        url: '/recipes/index',
+        templateUrl: '/templates/recipe/index.html',
+        controller: 'indexRecipeCtrl'
+      })
+
       .state('showRecipe', {
         url: '/recipes/:recipe_id',
         templateUrl: '/templates/recipe/show.html',
