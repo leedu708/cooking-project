@@ -3,7 +3,7 @@
   </div>
 
   <div class='nav-header'>
-    <h2 class='text-center'>HEADER IMAGE</h2>
+    <h2 class='text-center'>{{ width }}</h2>
   </div>
 
   <div class='container-fluid'>
@@ -11,13 +11,15 @@
       <div class='below-header-wrapper'>
         <div class='col-xs-2'>
           <div class='logo-wrapper'>
-            <div class='logo'>
-              <h2 class='logo-image text-center'>LOGO</h2>
-            </div>
+            <a ui-sref='home'>
+              <div class='logo'>
+                <img src='http://cdnlg.elegantgiftgallery.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/r/b/rb7964-l.jpg'>
+              </div>
+            </a>
           </div>
         </div>
 
-        <div class='col-xs-10'>
+        <div class='col-xs-10 nav-list'>
           <ul class='list-inline'>
             <li>
               <a ui-sref='indexRecipe'>
@@ -34,7 +36,9 @@
             </li>
 
             <li>
-              Contact Me
+              <a ui-sref='contact'>
+                Contact Me
+              </a>
             </li>
 
             <li>

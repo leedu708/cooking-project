@@ -1,15 +1,17 @@
 <div class='col-xs-10 col-xs-offset-1'>
 
-  <div class='col-xs-4' ng-repeat='recipe in recipes'>
+  <div class='col-xs-6 col-sm-4 col-md-3' ng-repeat='recipe in recipes'>
     <div class='flip-container' ng-class='{flipped: flipped(recipe)}'>
       <div class='flipper'>
         <div class='front'>
           <div class='col-xs-12'>
             <h3 class='page-header'>
-              {{ recipe.title }}
+              <a ui-sref='showRecipe({recipe_id: recipe.id})'>
+                {{ recipe.title }}
+              </a>
             </h3>
             <strong>Description:</strong> <p>{{ recipe.description }}</p>
-            <span class='btn btn-primary text-center'
+            <span class='btn btn-primary pull-right flip-btn'
                   ng-click='flip(recipe)'>
               Ingredients
             </span>

@@ -15,10 +15,16 @@ var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate'
 
     $stateProvider
 
+      // navbar-routes
       .state('home', {
         url: '/home',
-        templateUrl: '/templates/home.html',
+        templateUrl: '/templates/nav/home.html',
         controller: 'HomeCtrl'
+      })
+
+      .state('contact', {
+        url: '/contact',
+        templateUrl: '/templates/nav/contact.html'
       })
 
       // recipe CRUD
