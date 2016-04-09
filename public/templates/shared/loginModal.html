@@ -1,0 +1,49 @@
+<span class='pointer btn-sm btn-primary' data-toggle='modal' data-target='#login-modal' ng-if='!loggedIn()'>
+  Login
+</span>
+
+<span ng-if='loggedIn()'>
+  Hello, {{ currentUser.first_name }} | <a class='pointer' ng-click='logout()'>Logout</a>
+</span>
+
+<div class='modal fade' id='login-modal' tabindex='-1' role='dialog'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <h4 class='modal-title text-center'>Login</h4>
+      </div>
+
+      <div class='modal-body'>
+        <div class='row'>
+          <div class='col-xs-8 col-xs-offset-2'>
+            <form>
+              <div class='form-group'>
+                <label for='email'>Email</label>
+                <input type='email' class='form-control' id='email' ng-model='creds.email'>
+              </div>
+
+              <div class='form-group'>
+                <label for='password'>Password</label>
+                <input type='password' class='form-control' id='password' ng-model='creds.password'>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class='modal-footer'>
+        <button type='button'
+                class='btn btn-success'
+                ng-click='login(creds)'
+                data-dismiss='modal'>
+          Login
+        </button>
+
+        <a href='#' class='btn btn-primary' data-dismiss='modal'>
+          Sign Up
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
