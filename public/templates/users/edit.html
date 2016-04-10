@@ -1,0 +1,33 @@
+<div class='col-xs-8 col-xs-offset-2'>
+  <h2 class='page-header text-center'>Edit Your Information</h2>
+
+  <div class='col-xs-10 col-xs-offset-1'>
+    <form>
+      <div class='form-group'>
+        <label for='email'>Email</label>
+        <input type='email' class='form-control' ng-model='creds.email'>
+      </div>
+
+      <div class='form-group'>
+        <label for='password'>Password</label>
+        <i>(leave blank if you don't want to change it)</i>
+        <input type='password' class='form-control' ng-model='creds.password'>
+      </div>
+
+      <div class='form-group'>
+        <label for='password_confirmation'>Confirm Password</label>
+        <input type='password' class='form-control' ng-model='creds.password_confirmation'>
+      </div>
+
+      <div class='form-group'>
+        <label for='current_password'>Current Password</label>
+        <i>(we need your current password to confirm your changes)</i>
+        <input type='password' class='form-control' ng-model='creds.current_password'>
+      </div>
+
+      <button type='submit' class='btn btn-primary' ng-click='update(creds)'>
+        UPDATE
+      </button>
+    </form>
+  </div>
+</div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get 'home'
       end
     end
+    resources :users, :only => [:show]
     resources :ingredients, :only => [:index, :create, :destroy]
     resources :images, :only => [:create]
   end

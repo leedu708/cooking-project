@@ -13,6 +13,8 @@ cooking.controller('LoginCtrl',
     $scope.login = function(creds) {
       userAuthService.login(creds).then(function(user) {
         $window.location.reload();
+      }, function() {
+        $scope.creds = {};
       });
     };
 

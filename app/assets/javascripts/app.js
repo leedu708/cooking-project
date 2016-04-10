@@ -34,6 +34,17 @@ var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate'
         controller: 'newRegistrationCtrl'
       })
 
+      .state('userEdit', {
+        url: '/users/:user_id/edit',
+        templateUrl: '/templates/users/edit.html',
+        controller: 'editRegistrationCtrl',
+        resolve: {
+          user: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
+            return Restangular.one('users', $stateParams['user_id']).get();
+          }]
+        }
+      })
+
       // recipe CRUD
       .state('indexRecipe', {
         url: '/recipes/index',
