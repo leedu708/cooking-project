@@ -1,0 +1,41 @@
+<div class='col-xs-8 col-xs-offset-2'>
+  <h2 class='page-header text-center'>Register A New User</h2>
+
+  <div class='col-xs-10 col-xs-offset-1'>
+    <form>
+      <div class='form-group'>
+        <label for='first_name'>First Name</label>
+        <input type='text' class='form-control' ng-model='creds.first_name'>
+      </div>
+
+      <div class='form-group'>
+        <label for='last_name'>Last Name</label>
+        <input type='text' class='form-control' ng-model='creds.last_name'>
+      </div>
+
+      <div class='form-group'>
+        <label for='username'>Username</label>
+        <input type='text' class='form-control' ng-model='creds.username'>
+      </div>
+
+      <div class='form-group'>
+        <label for='email'>Email</label>
+        <input type='email' class='form-control' ng-model='creds.email'>
+      </div>
+
+      <div class='form-group'>
+        <label for='password'>Password</label>
+        <input type='password' class='form-control' ng-model='creds.password'>
+      </div>
+
+      <div class='form-group'>
+        <label for='password_confirmation'>Confirm Password</label>
+        <input type='password' class='form-control' ng-model='creds.password_confirmation'>
+      </div>
+
+      <button type='submit' class='btn btn-primary' ng-click='register(creds)'>
+        Sign Up!
+      </button>
+    </form>
+  </div>
+</div>

@@ -27,6 +27,13 @@ var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate'
         templateUrl: '/templates/nav/contact.html'
       })
 
+      // registration routes
+      .state('register', {
+        url: '/register',
+        templateUrl: '/templates/users/register.html',
+        controller: 'newRegistrationCtrl'
+      })
+
       // recipe CRUD
       .state('indexRecipe', {
         url: '/recipes/index',

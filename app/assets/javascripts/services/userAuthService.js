@@ -24,6 +24,10 @@ cooking.factory('userAuthService',
       return Auth.register(creds, config);
     };
 
+    userAuthService.getCurrentUser = function() {
+      return Auth.currentUser();
+    };
+
     return userAuthService;
 
   }]);

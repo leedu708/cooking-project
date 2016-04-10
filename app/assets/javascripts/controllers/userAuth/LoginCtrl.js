@@ -3,16 +3,16 @@ cooking.controller('LoginCtrl',
   function($scope, Auth, $location, $window, userAuthService) {
 
     $scope.init = function() {
-      Auth.currentUser().then(function(user) {
+      userAuthService.getCurrentUser().then(function(user) {
         $scope.currentUser = user;
-      }, function(error) {
+      }, function() {
         $scope.currentUser = '';
       });
     };
 
     $scope.login = function(creds) {
       userAuthService.login(creds).then(function(user) {
-        $scope.currentUser = user;
+        $window.location.reload();
       });
     };
 
