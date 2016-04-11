@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post 'favorite', :on => :member
     end
     resources :users, :only => [:show]
+    resources :favorites, :only => [:index]
     resources :ingredients, :only => [:index, :create, :destroy]
     resources :images, :only => [:create]
   end

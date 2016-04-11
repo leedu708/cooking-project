@@ -27,6 +27,17 @@ var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate'
         templateUrl: '/templates/nav/contact.html'
       })
 
+      .state('favorites', {
+        url: '/favorites',
+        templateUrl: '/templates/nav/recipeBox.html',
+        controller: 'FavoritesCtrl',
+        resolve: {
+          favorites: ['Restangular', function(Restangular) {
+            return Restangular.all('favorites').getList();
+          }]
+        }
+      })
+
       // registration routes
       .state('register', {
         url: '/register',

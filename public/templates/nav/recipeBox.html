@@ -1,0 +1,11 @@
+<div class='col-xs-10 col-xs-offset-1'>
+  <h1 class='page-header'>Recipe Box</h1>
+
+  <ol>
+    <li ng-repeat='recipe in favorites'>
+      <a ui-sref='showRecipe({recipe_id: recipe.id})'>
+        {{ recipe.title }}
+      </a>
+    </li>
+  </ol>
+</div>

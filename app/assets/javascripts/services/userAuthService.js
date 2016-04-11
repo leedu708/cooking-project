@@ -4,6 +4,7 @@ cooking.factory('userAuthService',
 
     userAuthService = {};
 
+    // devise actions
     userAuthService.login = function(creds) {
       var config = { headers: { 'X-HTTP-Method-Override': 'POST' } }
       return Auth.login(creds, config);
@@ -24,6 +25,7 @@ cooking.factory('userAuthService',
       return Auth.register(creds, config);
     };
 
+    // get current user
     userAuthService.getCurrentUser = function() {
       return Auth.currentUser();
     };
