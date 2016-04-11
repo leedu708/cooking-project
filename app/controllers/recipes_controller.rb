@@ -10,7 +10,8 @@ class RecipesController < ApplicationController
 
   def home
     @recipes = Recipe.all.to_json(
-      :include => [ { :items => { :methods => :name } } ] )
+      :include => [ { :items => { :methods => :name } } ],
+      :methods => [:favorite_ids] )
     respond_to do |format|
       format.json { render :json => @recipes, :status => 200 }
     end
@@ -32,6 +33,20 @@ class RecipesController < ApplicationController
     if @recipe.save
       respond_to do |format|
         format.json { render :json => @recipe, :status => 201 }
+      end
+    else
+      respond_to do |format|
+        format.json { render :nothing => :true, :status => 422 }
+      end
+    end
+  end
+
+  def favorite
+    @recipe = Recipe.find(params[:id])
+
+    if @recipe.favorites.create(user_id: current_user.id)
+      respond_to do |format|
+        format.json { render :nothing => :true, :status => 200 }
       end
     else
       respond_to do |format|

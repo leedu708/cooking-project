@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       collection do
         get 'home'
       end
+      post 'favorite', :on => :member
     end
     resources :users, :only => [:show]
     resources :ingredients, :only => [:index, :create, :destroy]

@@ -15,6 +15,12 @@
                   ng-click='flip(recipe)'>
               Ingredients
             </span>
+
+            <span class='btn btn-warning pull-right flip-btn'
+                  ng-if='!favorited(recipe)'
+                  ng-click='favorite(recipe)'>
+              Favorite
+            </span>
           </div>
         </div>
 

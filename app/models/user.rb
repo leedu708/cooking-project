@@ -4,5 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :favorites, :class_name => 'Recipe'
+  has_many :favorites, :dependent => :destroy
+  has_many :favorited_recipes, :through => :favorites, :source => :recipe
 end

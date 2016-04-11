@@ -1,9 +1,10 @@
 cooking.factory('recipeService',
-  ['Restangular',
-  function(Restangular) {
+  ['Restangular', '$rootScope',
+  function(Restangular, $rootScope) {
 
     recipeService = {};
 
+    // rails controller actions
     recipeService.index = function() {
       return Restangular.all('recipes').getList();
     };
@@ -20,10 +21,15 @@ cooking.factory('recipeService',
       return Restangular.all('recipes').post( recipe );
     };
 
+    recipeService.favorite = function(recipe) {
+      return Restangular.one('recipes', recipe.id).post('favorite');
+    };
+
     recipeService.destroy = function(recipe) {
       return recipe.remove();
     };
 
+    // sorting functions
     recipeService.sortByTitle = function(recipes) {
       return recipes.sort(function(a, b) {
         if (a.title > b.title) {
@@ -46,6 +52,11 @@ cooking.factory('recipeService',
           0;
         };
       });
+    };
+
+    // boolean checks
+    recipeService.favorited = function(recipe, userID) {
+      return (recipe.favorite_ids.includes(userID));
     };
 
     return recipeService;

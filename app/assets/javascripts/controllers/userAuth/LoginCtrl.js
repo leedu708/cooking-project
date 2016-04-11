@@ -1,6 +1,6 @@
 cooking.controller('LoginCtrl',
-  ['$scope', 'Auth', '$location', '$window', 'userAuthService',
-  function($scope, Auth, $location, $window, userAuthService) {
+  ['$scope', '$rootScope', 'Auth', '$location', '$window', 'userAuthService',
+  function($scope, $rootScope, Auth, $location, $window, userAuthService) {
 
     $scope.init = function() {
       userAuthService.getCurrentUser().then(function(user) {
