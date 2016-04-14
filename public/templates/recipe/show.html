@@ -55,6 +55,16 @@
             </tr>
         </table>
       </div>
-    </div>
+    </div><!-- END ITEMS -->
+  </div>
+
+  <!-- RECIPE STEPS -->
+  <h3 class='page-header'>Steps</h3>
+  <div class='col-xs-10 col-xs-offset-1'>
+    <ol>
+      <li ng-repeat='step in steps'>
+        {{ step.instructions }}
+      </li>
+    </ol>
   </div>
 </div>

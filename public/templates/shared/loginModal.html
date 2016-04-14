@@ -3,7 +3,11 @@
 </span>
 
 <span ng-if='loggedIn()'>
-  Hello, {{ currentUser.first_name }} | <a class='pointer' ng-click='logout()'>Logout</a>
+  Hello, {{ currentUser.first_name }} | 
+  <a ui-sref='admin.dashboard.overview'
+     class='pointer'
+     ng-if='currentUser.admin'>Admin Dashbaord</a> |
+  <a class='pointer' ng-click='logout()'>Logout</a>
 </span>
 
 <div class='modal fade' id='login-modal' tabindex='-1' role='dialog'>

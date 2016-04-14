@@ -1,6 +1,6 @@
 cooking.controller('showRecipeCtrl',
-  ['$scope', '$stateParams', 'recipeService', 'itemService',
-  function($scope, $stateParams, recipeService, itemService) {
+  ['$scope', '$stateParams', 'recipeService', 'stepService', 'itemService',
+  function($scope, $stateParams, recipeService, stepService, itemService) {
 
     $scope.init = function() {
       $scope.getRecipe($stateParams['recipe_id']);
@@ -12,6 +12,7 @@ cooking.controller('showRecipeCtrl',
         $scope.recipe = response;
         itemService.setItems($scope.recipe.items);
         $scope.items = itemService.getItems();
+        $scope.steps = stepService.sortByOrder(response.steps);
       });
     };
 

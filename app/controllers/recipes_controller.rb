@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find_by_id(params[:id]).to_json(
-      :include => [ { :items => { :methods => :name } } ]
+      :include => [ { :items => { :methods => :name } }, :steps ]
       # :methods => [:image_urls] )
       )
     respond_to do |format|
