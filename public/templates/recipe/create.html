@@ -1,96 +1,94 @@
-<div class='col-xs-8 col-xs-offset-2'>
+<div class='col-xs-12'>
   <h1 class='page-header'>Create A Recipe</h1>
 
   <!-- Add recipe form -->
-  <div class='col-xs-10 col-xs-offset-1'>
-    <form>
-      <div class='form-group'>
-        <label for='title'>Title</label>
-        <input type='text' class='form-control' id='title' ng-model='recipe.title'>
+  <form>
+    <div class='form-group'>
+      <label for='title'>Title</label>
+      <input type='text' class='form-control' id='title' ng-model='recipe.title'>
+    </div>
+
+    <div class='form-group'>
+      <label for='description'>Description</label>
+      <textarea class='form-control' id='description' rows='7' ng-model='recipe.description'></textarea>
+    </div>
+
+    <div class='new-recipe-items col-xs-12'>
+      <h4 class='page-header'>Recipe Items</h4>
+
+      <div ng-repeat='item in recipe.items' class='new-item-wrapper'>
+
+        <div class='col-xs-2'>
+          <div class='form-group'>
+            <label>Weight</label>
+            <input type='text' class='form-control' min='1' ng-model='item.weight'>
+          </div>
+        </div>
+
+        <div class='col-xs-2'>
+          <div class='form-group'>
+            <label>Volume</label>
+            <input type='text' class='form-control' min='1' ng-model='item.volume'>
+          </div>
+        </div>
+
+        <div class='col-xs-3'>
+          <div class='form-group'>
+            <label>Ingredient</label>
+            <select class='form-control' ng-model='item.ingredient_id'>
+              <option value="" selected>Choose an ingredient...</option>
+              <option ng-repeat="ingredient in ingredients" value='{{ ingredient.id }}'>{{ ingredient.name }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class='col-xs-5'>
+          <div class='form-group'>
+            <label>Notes</label>
+            <input type='text' class='form-control' ng-model='item.notes'>
+          </div>
+        </div>
+
       </div>
 
-      <div class='form-group'>
-        <label for='description'>Description</label>
-        <textarea class='form-control' id='description' rows='7' ng-model='recipe.description'></textarea>
+      <a class='pointer' ng-click='addItem()'>Add Another Item</a>
+    </div><br>
+
+    <div class='new-recipe-steps col-xs-12'>
+      <h4 class='page-header'>Steps</h4>
+
+      <div ng-repeat='step in recipe.steps' class='new-step-wrapper'>
+        <div class='col-xs-2'>
+          <div class='form-group'>
+            <input type='number' class='form-control' min='1' ng-model='step.recipe_order'>
+          </div>
+        </div>
+
+        <div class='col-xs-10'>
+            <div class='form-group'>
+              <input type='text' class='form-control' ng-model='step.instructions' placeholder='Instructions...'>
+            </div>
+        </div>
       </div>
 
-      <div class='new-recipe-items col-xs-12'>
-        <h4 class='page-header'>Recipe Items</h4>
+      <a class='pointer' ng-click='addStep()'>Add Another Step</a>
+    </div><br>
 
-        <div ng-repeat='item in recipe.items' class='new-item-wrapper'>
+    <div class='new-recipe-images col-xs-12'>
+      <h4 class='page-header'>Images</h4>
 
-          <div class='col-xs-2'>
-            <div class='form-group'>
-              <label>Weight</label>
-              <input type='text' class='form-control' min='1' ng-model='item.weight'>
-            </div>
-          </div>
-
-          <div class='col-xs-2'>
-            <div class='form-group'>
-              <label>Volume</label>
-              <input type='text' class='form-control' min='1' ng-model='item.volume'>
-            </div>
-          </div>
-
-          <div class='col-xs-3'>
-            <div class='form-group'>
-              <label>Ingredient</label>
-              <select class='form-control' ng-model='item.ingredient_id'>
-                <option value="" selected>Choose an ingredient...</option>
-                <option ng-repeat="ingredient in ingredients" value='{{ ingredient.id }}'>{{ ingredient.name }}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class='col-xs-5'>
-            <div class='form-group'>
-              <label>Notes</label>
-              <input type='text' class='form-control' ng-model='item.notes'>
-            </div>
-          </div>
-
-        </div>
-
-        <a class='pointer' ng-click='addItem()'>Add Another Item</a>
-      </div><br>
-
-      <div class='new-recipe-steps col-xs-12'>
-        <h4 class='page-header'>Steps</h4>
-
-        <div ng-repeat='step in recipe.steps' class='new-step-wrapper'>
-          <div class='col-xs-2'>
-            <div class='form-group'>
-              <input type='number' class='form-control' min='1' ng-model='step.recipe_order'>
-            </div>
-          </div>
-
-          <div class='col-xs-10'>
-              <div class='form-group'>
-                <input type='text' class='form-control' ng-model='step.instructions' placeholder='instructions...'>
-              </div>
+      <div ng-repeat='image in images' class='new-image-wrapper'>
+        <div class='col-xs-4'>
+          <div class='form-group'>
+            <label>Attachment</label>
+            <input type='file' ngf-select ng-model='image.attachment' />
           </div>
         </div>
+      </div>
 
-        <a class='pointer' ng-click='addStep()'>Add Another Step</a>
-      </div><br>
+      <a class='pointer' ng-click='addImage()'>Add Another Image</a>
+    </div><br><br>
 
-      <div class='new-recipe-images col-xs-12'>
-        <h4 class='page-header'>Images</h4>
-
-        <div ng-repeat='image in images' class='new-image-wrapper'>
-          <div class='col-xs-4'>
-            <div class='form-group'>
-              <label>Attachment</label>
-              <input type='file' ngf-select ng-model='image.attachment' />
-            </div>
-          </div>
-        </div>
-
-        <a class='pointer' ng-click='addImage()'>Add Another Image</a>
-      </div><br>
-
-      <button type='submit' class='btn btn-success text-center' ng-click='createRecipe(recipe)'>Add Recipe</button>
-    </form>
-  </div>
+    <button type='submit' class='btn btn-success text-center' ng-click='createRecipe(recipe)'>Add Recipe</button>
+  </form>
 </div>

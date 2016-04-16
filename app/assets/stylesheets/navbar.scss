@@ -38,6 +38,8 @@
   }
 
   .nav-list {
+    position: relative;
+    z-index: -1;
   }
 
   .nav-column {
@@ -58,10 +60,11 @@
   }
 }
 
-@media only screen and (max-width: 1315px) {
+@media only screen and (max-width: 1317px) {
   .below-header-wrapper {
     ul {
       margin-left: 75px;
+      position: relative;
 
       li {
         font-size: 18px;
@@ -72,7 +75,7 @@
   }
 }
 
-@media only screen and (min-width: 1316px)
+@media only screen and (min-width: 1318px)
                    and (max-width: 1580px) {
   .below-header-wrapper {
     ul {

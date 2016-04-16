@@ -69,7 +69,7 @@ var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate'
         controller: 'showRecipeCtrl'
       })
 
-      .state('createRecipe', {
+      .state('admin.dashboard.createRecipe', {
         url: '/recipe/create',
         templateUrl: '/templates/recipe/create.html',
         controller: 'createRecipeCtrl'

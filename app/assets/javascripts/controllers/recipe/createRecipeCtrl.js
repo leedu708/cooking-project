@@ -12,11 +12,9 @@ cooking.controller('createRecipeCtrl',
 
       $scope.images = [];
 
-      for (var i = 1; i <= 3; i++) {
-        $scope.addItem();
-        $scope.addStep();
-        $scope.addImage();
-      };
+      $scope.addItem();
+      $scope.addStep();
+      $scope.addImage();
 
       ingredientService.index().then(function(response) {
         $scope.ingredients = response;
