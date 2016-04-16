@@ -16,6 +16,8 @@ class Recipe < ActiveRecord::Base
 
   accepts_nested_attributes_for :steps, :reject_if => proc { |a| a[:instructions].blank? }
 
+  accepts_nested_attributes_for :taggings, :reject_if => proc { |a| a[:tag_id].blank? }
+
   def image_urls
     self.images.pluck(:url)
   end

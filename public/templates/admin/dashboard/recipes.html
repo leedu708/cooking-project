@@ -16,15 +16,19 @@
   <table class='table table-bordered table-striped'>
     <thead>
       <tr>
-        <th>
+        <th class='col-xs-3'>
           Title
         </th>
 
-        <th>
+        <th class='col-xs-7'>
           Description
         </th>
 
-        <th>
+        <th class='col-xs-1'>
+          Tags
+        </th>
+
+        <th class='col-xs-1'>
           Delete?
         </th>
       </tr>
@@ -42,7 +46,13 @@
           {{ recipe.description }}
         </td>
 
-        <td>
+        <td class='text-center'>
+          <span ng-repeat='tag in recipe.tags'>
+            {{ tag.name }}<br />
+          </span>
+        </td>
+
+        <td class='text-center'>
           <span class='btn btn-danger pointer' ng-click='deleteRecipe(recipe)'>
             Delete
           </span>

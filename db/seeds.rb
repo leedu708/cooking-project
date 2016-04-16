@@ -56,6 +56,24 @@ Recipe.all.each do |recipe|
   end
 end
 
+random_tags = ['vegetarian', 'gluten-free', 'milk-free', 'chicken', 'low-fat']
+
+random_tags.each do |tag|
+  Tag.create(:name => tag)
+end
+
+puts 'Tags created'
+
+Recipe.all.each do |recipe|
+  Tag.all.each do |tag|
+    if (rand(10) > 5)
+      recipe.taggings.create(:tag_id => tag.id)
+    end
+  end
+end
+
+puts 'Added tags to recipes'
+
 puts 'Steps added to recipes'
 
 puts 'SEEDING COMPLETE'

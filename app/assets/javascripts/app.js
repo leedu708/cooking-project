@@ -120,9 +120,7 @@ var cooking = angular.module('cooking', ['ui.router', 'restangular', 'ngAnimate'
       .state('admin.dashboard.tags', {
         url: '/tags',
         templateUrl: '/templates/admin/dashboard/tags.html',
-        controller: ['$scope', function($scope) {
-          $scope.title = 'Tags';
-        }]
+        controller: 'adminTagCtrl'
       })
 
   }])

@@ -1,13 +1,14 @@
 cooking.controller('createRecipeCtrl',
-  ['$scope', '$location', '$q', 'imageService', 'ingredientService', 'recipeService',
-  function($scope, $location, $q, imageService, ingredientService, recipeService) {
+  ['$scope', '$location', '$q', 'imageService', 'ingredientService', 'recipeService', 'tagService',
+  function($scope, $location, $q, imageService, ingredientService, recipeService, tagService) {
 
     $scope.init = function() {
       $scope.recipe = {
         title: '',
         description: '',
         items: [],
-        steps: []
+        steps: [],
+        taggings: []
       };
 
       $scope.images = [];
@@ -15,9 +16,14 @@ cooking.controller('createRecipeCtrl',
       $scope.addItem();
       $scope.addStep();
       $scope.addImage();
+      $scope.addTag();
 
       ingredientService.index().then(function(response) {
-        $scope.ingredients = response;
+        $scope.ingredients = ingredientService.sortByName(response);
+      });
+
+      tagService.index().then(function(response) {
+        $scope.tags = tagService.sortByName(response);
       });
     };
 
@@ -50,7 +56,16 @@ cooking.controller('createRecipeCtrl',
       $scope.images.push(image);
     };
 
+    $scope.addTag = function() {
+      var tag = {
+        tag_id: ''
+      };
+
+      this.recipe.taggings.push(tag);
+    };
+
     $scope.createRecipe = function(recipe) {
+      // recipe.taggings = $scope.removeDuplicateTags(recipe.taggings);
       recipeService.create(recipe).then(function(response) {
         $scope.uploadImages(response.id, $scope.images)
           .then(function() {
@@ -58,6 +73,12 @@ cooking.controller('createRecipeCtrl',
         });        
       });
     };
+
+    // $scope.removeDuplicateTags = function(tags) {
+    //   return tags.filter(function(tag, id) {
+    //     return tags.indexOf(tag) == id;
+    //   });
+    // };
 
     $scope.uploadImages = function(recipe_id, images) {
       var defer = $q.defer();

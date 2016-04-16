@@ -2,14 +2,15 @@ class RecipesController < ApplicationController
   before_filter :process_params, only: [:create]
 
   def index
-    @recipes = Recipe.all.to_json
+    @recipes = Recipe.all.to_json(
+      :include => [:tags] )
     respond_to do |format|
       format.json { render :json => @recipes, :status => 200 }
     end
   end
 
   def home
-    @recipes = Recipe.all.to_json(
+    @recipes = Recipe.all.limit(8).to_json(
       :include => [ { :items => { :methods => :name } } ],
       :methods => [:favorite_ids] )
     respond_to do |format|
@@ -96,7 +97,9 @@ class RecipesController < ApplicationController
                   :notes ] },
               { :steps_attributes => [
                   :instructions,
-                  :recipe_order ] } )
+                  :recipe_order ] },
+              { :taggings_attributes => [
+                  :tag_id ] } )
   end
 
   def process_params
@@ -108,6 +111,11 @@ class RecipesController < ApplicationController
     if params[:steps]
       params[:recipe][:steps_attributes] = []
       params[:steps].each { |att| params[:recipe][:steps_attributes].push(att) }
+    end
+
+    if params[:taggings]
+      params[:recipe][:taggings_attributes] = []
+      params[:taggings].each { |att| params[:recipe][:taggings_attributes].push(att) }
     end
   end
   

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :users, :only => [:show]
     resources :favorites, :only => [:index]
     resources :ingredients, :only => [:index, :create, :destroy]
+    resources :tags, :only => [:index, :create, :destroy]
     resources :images, :only => [:create]
   end
 end

@@ -74,6 +74,24 @@
       <a class='pointer' ng-click='addStep()'>Add Another Step</a>
     </div><br>
 
+    <div class='new-recipe-tags col-xs-12'>
+      <h4 class='page-header'>Tags</h4>
+
+      <div ng-repeat='newTag in recipe.taggings' class='new-tag-wrapper'>
+        <div class='col-xs-3'>
+          <div class='form-group'>
+            <label>Tag Name</label>
+            <select class='form-control' ng-model='newTag.tag_id'>
+              <option value="" selected>Choose a tag...</option>
+              <option ng-repeat="tag in tags" value='{{ tag.id }}'>{{ tag.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <a class='pointer' ng-click='addTag()'>Add Another Tag</a>
+    </div><br>
+
     <div class='new-recipe-images col-xs-12'>
       <h4 class='page-header'>Images</h4>
 
