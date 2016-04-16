@@ -29,7 +29,7 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat='ingredient in ingredients | filter:searchText'>
+      <tr ng-repeat='ingredient in ingredients | filter:{name:searchText}'>
         <td>
           {{ ingredient.name }}
         </td>

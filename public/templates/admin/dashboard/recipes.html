@@ -31,7 +31,7 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat='recipe in recipes | filter:searchText'>
+      <tr ng-repeat='recipe in recipes | filter:{title:searchText}'>
         <td>
           <a ui-sref='showRecipe({recipe_id: recipe.id})'>
             {{ recipe.title }}

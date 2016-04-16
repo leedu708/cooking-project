@@ -6,7 +6,7 @@
   Hello, {{ currentUser.first_name }} | 
   <a ui-sref='admin.dashboard.overview'
      class='pointer'
-     ng-if='currentUser.admin'>Admin Dashbaord</a> |
+     ng-if='currentUser.admin'>Admin Dashboard</a> <span ng-if='currentUser.admin'>|</span>
   <a class='pointer' ng-click='logout()'>Logout</a>
 </span>
 

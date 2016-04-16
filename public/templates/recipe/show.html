@@ -6,7 +6,7 @@
     <!-- Recipe Description -->
     <p>{{ recipe.description }}</p>
 
-    <h3 class='page-header'>
+    <h2 class='page-header'>
       Ingredients
       <div class='col-xs-2 pull-right'>
         <select class='form-control' ng-model='measurement'>
@@ -14,7 +14,7 @@
           <option value='volume'>Volume</option>
         </select>
       </div>
-    </h3>
+    </h2>
     <!-- Recipe Items -->
     <div class='col-xs-10 col-xs-offset-1'>
       <div class='table-responsive'>
@@ -59,7 +59,7 @@
   </div>
 
   <!-- RECIPE STEPS -->
-  <h3 class='page-header'>Steps</h3>
+  <h2 class='page-header'>Steps</h2>
   <div class='col-xs-10 col-xs-offset-1'>
     <ol>
       <li ng-repeat='step in steps'>
