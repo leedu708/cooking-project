@@ -65,7 +65,8 @@ cooking.controller('createRecipeCtrl',
     };
 
     $scope.createRecipe = function(recipe) {
-      // recipe.taggings = $scope.removeDuplicateTags(recipe.taggings);
+      recipe.items = $scope.removeDuplicates(recipe.items, 'ingredient_id');
+      recipe.taggings = $scope.removeDuplicates(recipe.taggings, 'tag_id');
       recipeService.create(recipe).then(function(response) {
         $scope.uploadImages(response.id, $scope.images)
           .then(function() {
@@ -74,11 +75,17 @@ cooking.controller('createRecipeCtrl',
       });
     };
 
-    // $scope.removeDuplicateTags = function(tags) {
-    //   return tags.filter(function(tag, id) {
-    //     return tags.indexOf(tag) == id;
-    //   });
-    // };
+    $scope.removeDuplicates = function(arr, idType) {
+      ids = [];
+      output = [];
+      for (var i = 0; i < arr.length; i++) {
+        if (!ids.includes(arr[i][idType])) {
+          ids.push(arr[i][idType]);
+          output.push(arr[i]);
+        };
+      };
+      return output;
+    };
 
     $scope.uploadImages = function(recipe_id, images) {
       var defer = $q.defer();
